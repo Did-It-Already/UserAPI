@@ -16,11 +16,11 @@ services:
       retries: 5
   web:
     build: .
-    command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8000"
+    command: bash -c "python manage.py migrate && python manage.py runserver 127.0.0.1:8001"
     volumes:
       - .:/code
     ports:
-      - "8000:8000"
+      - "8001:8001"
     environment:
       - POSTGRES_NAME=users_db
       - POSTGRES_USER=postgres
