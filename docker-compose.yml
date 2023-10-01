@@ -1,19 +1,6 @@
 version: "3.9"
    
 services:
-  db:
-    image: postgres
-    volumes:
-      - ./data/db:/var/lib/postgresql/data
-    environment:
-      - POSTGRES_DB=users_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Arquisoft2023
-    healthcheck:
-      test: ["CMD-SHELL", "pg_isready -U postgres"]
-      interval: 5s
-      timeout: 5s
-      retries: 5
   web:
     build: .
     command: bash -c "python manage.py migrate && python manage.py runserver 0.0.0.0:8001"
@@ -22,13 +9,7 @@ services:
     ports:
       - "8001:8001"
     environment:
-      - POSTGRES_NAME=users_db
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=Arquisoft2023
       - CLOUDINARY_API_KEY=171759724969595
       - CLOUDINARY_API_SECRET=12LboDYtu51IKMMLKYojyyNUQeE
       - CLOUDINARY_CLOUD_NAME=daryn06r2
-      - PORT=5432
-    depends_on:
-      db:
-        condition: service_healthy
+      - DATABASE_URL='postgres://default:Utyxu15nKPEv@ep-dry-union-64351208-pooler.us-east-1.postgres.vercel-storage.com:5432/verceldb'
