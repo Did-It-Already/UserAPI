@@ -16,6 +16,8 @@ data
 __pycache__/
 *.pyc
 
+virenv/
+
 # Editor directories and files
 .vscode/*
 !.vscode/extensions.json
