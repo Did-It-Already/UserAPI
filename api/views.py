@@ -28,6 +28,9 @@ class UserViewSet(viewsets.ModelViewSet):
         serializer = self.get_serializer(instance, data=request.data, partial=True)
         serializer.is_valid(raise_exception=True)
 
+        if 'email' in serializer.validated_data:
+            serializer.validated_data.pop('email')
+
         profile_picture_base64 = self.request.data.get('profile_picture', None)
         if profile_picture_base64 and profile_picture_base64 != "":
             upload_result = cloudinary.uploader.upload(profile_picture_base64)
