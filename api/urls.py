@@ -7,4 +7,5 @@ router.register(r'users', views.UserViewSet)
 
 urlpatterns = [
     path('', include(router.urls)),
+    path('soapUsers/', views.UserXMLAPIView.as_view(), name='user-xml-list')
 ]

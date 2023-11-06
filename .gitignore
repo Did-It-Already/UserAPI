@@ -17,6 +17,7 @@ __pycache__/
 *.pyc
 
 virenv/
+venv/
 
 # Editor directories and files
 .vscode/*

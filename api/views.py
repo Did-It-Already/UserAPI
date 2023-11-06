@@ -1,9 +1,14 @@
 from rest_framework import viewsets
 from .serializer import UserSerializer
+from .serializer import UserXMLSerializer
 from .models import User
+
 import cloudinary.uploader
 from rest_framework.response import Response
 from rest_framework import status
+
+from rest_framework import generics
+from rest_framework_xml.renderers import XMLRenderer
 
 class UserViewSet(viewsets.ModelViewSet):
     queryset = User.objects.all()
@@ -39,3 +44,8 @@ class UserViewSet(viewsets.ModelViewSet):
             serializer.save()
 
         return Response(serializer.data)
+    
+class UserXMLAPIView(generics.ListAPIView):
+    queryset = User.objects.all()
+    serializer_class = UserXMLSerializer
+    renderer_classes = [XMLRenderer]
